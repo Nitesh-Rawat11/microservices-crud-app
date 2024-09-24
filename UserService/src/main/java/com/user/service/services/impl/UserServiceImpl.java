@@ -111,7 +111,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void deleteUser(String userId) {
+	public void deleteUserById(String userId) {
     Optional<User> userDb = this.userRepository.findById(userId);
 		
 		if(userDb.isPresent()) {

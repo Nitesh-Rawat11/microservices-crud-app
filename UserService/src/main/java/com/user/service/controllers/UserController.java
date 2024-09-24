@@ -63,10 +63,14 @@ public class UserController {
 	}
     
     @DeleteMapping("/{userId}")
-	public HttpStatus deleteProduct(@PathVariable String userId) {
-		this.userService.deleteUser(userId);
-		return HttpStatus.OK;
-	}
+    public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable String userId) {
+      try {
+    	  userService.deleteUserById(userId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+      } catch (Exception e) {
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+    }
     
     // Fall back  method for circuit breaker
     public ResponseEntity<User> ratingHotelFallback(String userId, Exception ex) {
